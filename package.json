@@ -6,15 +6,22 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
+    "firebase": "^7.11.0",
     "react": "^16.13.0",
+    "react-datepicker": "^2.14.0",
     "react-dom": "^16.13.0",
+    "react-firebase": "^2.2.8",
+    "react-lottie": "^1.2.3",
     "react-scripts": "3.4.0"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "react-start": "react-scripts start",
+    "build": "react-scripts --max_old_space_size=4096 build",
+    "build-linux": "react-scripts --max_old_space_size=8096 build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "netlify-deploy": "npm run build-linux && netlify deploy --dir=build --prod"
   },
   "eslintConfig": {
     "extends": "react-app"
