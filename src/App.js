@@ -71,96 +71,95 @@ function App() {
   };
 
   return (
-    <div classname="App">
-      <div id="form-main">
-        <div id="form-div">
-          {loading ? (
-            <LoadingAnimation success={success} />
-          ) : (
-            <>
-              <h1>DYFI Puliyancheri</h1>
-              <h3>Blood Donor Form</h3>
-              <form className="form" id="form1">
-                <p className="name">
-                  <input
-                    name="name"
-                    type="text"
-                    value={name}
-                    className="validate[required,custom[onlyLetter],length[0,100]] feedback-input"
-                    placeholder="Name"
-                    id="name"
-                    onChange={(e) => {
-                      setName(e.target.value);
-                    }}
-                  />
-                </p>
-                <p className="name">
-                  <input
-                    name="address"
-                    type="text"
-                    className="validate[required,custom[onlyLetter],length[0,100]] feedback-input"
-                    placeholder="Address"
-                    id="name"
-                    value={adress}
-                    onChange={(e) => {
-                      setAdress(e.target.value);
-                    }}
-                  />
-                </p>
-                <p className="name">
-                  <input
-                    name="mobile"
-                    type="text"
-                    className="feedback-input"
-                    placeholder="Mobile"
-                    id="name"
-                    value={mobile}
-                    onChange={mobileValidator}
-                  />
-                </p>
-                <select
+    <div className="App">
+      <div id="form-div">
+        {loading ? (
+          <LoadingAnimation success={success} />
+        ) : (
+          <>
+            <h1>DYFI Puliyancheri</h1>
+            <h3>Blood Donor Form</h3>
+            <form className="form" id="form1">
+              <p className="name">
+                <input
+                  name="name"
+                  type="text"
+                  value={name}
+                  className="validate[required,custom[onlyLetter],length[0,100]] feedback-input"
+                  placeholder="Name"
                   id="name"
-                  className="feedback-input"
                   onChange={(e) => {
-                    setBlood(e.target.value);
+                    setName(e.target.value);
                   }}
-                >
-                  <option value="Blood Group">Blood Group</option>
-                  <option value="A+">A+</option>
-                  <option value="B+">B+</option>
-                  <option value="AB+">AB+</option>
-                  <option value="O+">O+</option>
-                  <option value="A-">A-</option>
-                  <option value="B-">B-</option>
-                  <option value="AB-">AB-</option>
-                  <option value="O-">O-</option>
-                </select>
-                <p className="name">
-                  <DatePicker
-                    className="feedback-input"
-                    selected={date}
-                    onChange={(date) => setDate(date)}
-                    placeholderText="Last Donated Date"
-                    dateFormat="MM/dd/yy"
-                  />
-                </p>
-                <div className="submit">
-                  <input
-                    type="submit"
-                    defaultValue="SEND"
-                    id="button-blue"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      validate();
-                    }}
-                  />
-                  <div className="ease" />
-                </div>
-              </form>
-            </>
-          )}
-          <h4 className="text-danger text-center">{error}</h4>
-        </div>
+                />
+              </p>
+              <p className="name">
+                <input
+                  name="address"
+                  type="text"
+                  className="validate[required,custom[onlyLetter],length[0,100]] feedback-input"
+                  placeholder="Address"
+                  id="name"
+                  value={adress}
+                  onChange={(e) => {
+                    setAdress(e.target.value);
+                  }}
+                />
+              </p>
+              <p className="name">
+                <input
+                  name="mobile"
+                  type="text"
+                  className="feedback-input"
+                  placeholder="Mobile"
+                  id="name"
+                  value={mobile}
+                  onChange={mobileValidator}
+                />
+              </p>
+              <select
+                id="name"
+                className="feedback-input"
+                onChange={(e) => {
+                  setBlood(e.target.value);
+                }}
+              >
+                <option value="Blood Group">Blood Group</option>
+                <option value="A+">A+</option>
+                <option value="B+">B+</option>
+                <option value="AB+">AB+</option>
+                <option value="O+">O+</option>
+                <option value="A-">A-</option>
+                <option value="B-">B-</option>
+                <option value="AB-">AB-</option>
+                <option value="O-">O-</option>
+              </select>
+              <p className="name">
+                <DatePicker
+                  className="feedback-input"
+                  selected={date}
+                  onChange={(date) => setDate(date)}
+                  placeholderText="Last Donated Date"
+                  dateFormat="MM/dd/yy"
+                />
+              </p>
+              <div className="submit">
+                <input
+                  type="submit"
+                  defaultValue="SEND"
+                  value="SEND"
+                  id="button-blue"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    validate();
+                  }}
+                />
+                <div className="ease" />
+              </div>
+            </form>
+          </>
+        )}
+        <h4 className="text-danger text-center">{error}</h4>
       </div>
     </div>
   );
