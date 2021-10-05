@@ -11,15 +11,19 @@ html {
   background-size: cover;
   height: 100%;
 }
-
-#feedback-page {
-  text-align: center;
+* {
+  box-sizing: border-box;
 }
-
-#form-main {
+#root {
+  height: 100vh;
+  display: flex;
+}
+.App {
   width: 100%;
-  float: left;
-  padding-top: 0px;
+  height: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 #form-div {
@@ -28,14 +32,48 @@ html {
   padding-right: 35px;
   padding-top: 25px;
   padding-bottom: 50px;
-  width: 450px;
-  float: left;
-  left: 50%;
-  position: absolute;
-  margin-top: 30px;
-  margin-left: -260px;
-  -moz-border-radius: 7px;
-  -webkit-border-radius: 7px;
+  width: 90%;
+  max-width: 700px;
+  margin: auto;
+}
+.scrollView {
+  flex: 1;
+  width: 90%;
+  max-width: 700px;
+  margin: 0 auto;
+  background-color: rgba(72, 72, 72, 0.4);
+  overflow-y: auto;
+  padding: 35px;
+}
+.scrollView .donor {
+  background-color: rgba(255, 255, 255, 0.4);
+  height: 110px;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  padding: 0 5%;
+}
+.scrollView .donor .dp {
+  height: 70px;
+  width: 70px;
+  border-radius: 35px;
+}
+.scrollView .donor .name {
+  flex: 1;
+  margin-left: 15px;
+}
+.scrollView .donor .uname {
+  font-size: 20px;
+  font-weight: 600;
+}
+.scrollView .donor .blood {
+  height: 70px;
+  width: 70px;
+}
+.scrollView .donor .call {
+  height: 30px;
+  width: 30px;
+  margin-left: 10px;
 }
 
 .feedback-input {
@@ -142,11 +180,25 @@ h3 {
 }
 @media only screen and (max-width: 580px) {
   #form-div {
-    left: 3%;
-    margin-right: 3%;
-    width: 88%;
-    margin-left: 0;
-    padding-left: 3%;
-    padding-right: 3%;
+    width: 100%;
+    padding: 5%;
   }
+  .scrollView {
+    width: 100%;
+    padding: 5%;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 0px !important;
+  height: 0px !important;
+}
+::-webkit-scrollbar-track {
+  background: #00000000;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(85, 85, 85, 0.055);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(51, 51, 51, 0.2);
 }
