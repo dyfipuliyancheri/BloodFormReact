@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import "./App.css";
 import "react-datepicker/dist/react-datepicker.css";
 import LoadingAnimation from "./LoadingAnimation/LoadingAnimation";
 import app from "firebase/app";
 import "firebase/firestore";
+import Footer from "./components/Footer";
 
 function App() {
   const [date, setDate] = useState("");
@@ -15,6 +16,24 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
+  const [unitList, setUnitList] = useState([]);
+  const [unit, setUnit] = useState("");
+
+  const getUnits = async () => {
+    let query = app.firestore().collection("units");
+    const resp = await query.get();
+    const units = [];
+    resp.forEach((documentSnapshot) => {
+      units.push({
+        ...documentSnapshot.data(),
+        id: documentSnapshot.id,
+      });
+    });
+    setUnitList(units);
+  };
+  useEffect(() => {
+    getUnits();
+  }, []);
 
   const mobileValidator = (e) => {
     const re = new RegExp(/^\d*$/);
@@ -41,6 +60,7 @@ function App() {
           (date.getFullYear() + "").slice(2, 4),
         mobile: mobile,
         name: name,
+        unit,
       })
       .then((ref) => {
         setSuccess(true);
@@ -54,7 +74,8 @@ function App() {
       adress === "" ||
       mobile.length !== 10 ||
       blood === "" ||
-      blood === "Blood Group"
+      blood === "Blood Group" ||
+      unit === ""
     ) {
       console.log(
         date === "",
@@ -106,6 +127,20 @@ function App() {
                   }}
                 />
               </p>
+              <select
+                id="name"
+                className="feedback-input"
+                onChange={(e) => {
+                  setUnit(e.target.value);
+                }}
+              >
+                <option value="">Unit</option>
+                {unitList.map((item) => (
+                  <option value={item.name} key={item.id}>
+                    {item.name}
+                  </option>
+                ))}
+              </select>
               <p className="name">
                 <input
                   name="mobile"
@@ -161,6 +196,7 @@ function App() {
         )}
         <h4 className="text-danger text-center">{error}</h4>
       </div>
+      <Footer />
     </div>
   );
 }
